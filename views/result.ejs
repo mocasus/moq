@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HookMoq - Result</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <i class="fas fa-check-circle leaf-icon" style="color: var(--secondary-green);"></i>
+        <h1>Berhasil!</h1>
+        <p>Webhook Discord Anda telah dibuat:</p>
+
+        <% if (webhook && webhook.url) { %>
+            <div class="result-box" id="webhook-url">
+                <%= webhook.url %>
+            </div>
+
+            <button class="btn copy-btn" onclick="copyToClipboard()">
+                <i class="fas fa-copy"></i> Salin URL
+            </button>
+        <% } else { %>
+            <div class="result-box" style="color: red;">
+                Gagal mendapatkan Webhook URL.
+            </div>
+        <% } %>
+
+        <br><br>
+        <a href="/" style="color: var(--primary-green); text-decoration: none;">Kembali ke Beranda</a>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const copyText = document.getElementById("webhook-url");
+            navigator.clipboard.writeText(copyText.innerText).then(() => {
+                alert("URL Webhook berhasil disalin!");
+            });
+        }
+    </script>
+</body>
+</html>
