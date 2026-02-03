@@ -70,7 +70,12 @@ app.get('/callback', async (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-    console.log(`Make sure to set DISCORD_CLIENT_ID and DISCORD_CLIENT_SECRET in .env`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+        console.log(`Make sure to set DISCORD_CLIENT_ID and DISCORD_CLIENT_SECRET in .env`);
+    });
+}
+
+// Export for Vercel
+module.exports = app;
